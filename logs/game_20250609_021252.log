@@ -1,0 +1,2 @@
+2025-06-09 02:12:52,029 [INFO] 游戏启动，日志级别: INFO
+2025-06-09 02:13:05,479 [CRITICAL] 游戏发生严重错误: Can't instantiate abstract class BattleView with abstract methods subscribe_chase_trigger_event, subscribe_damage_event, subscribe_status_change_event, subscribe_turn_change_event

@@ -1,0 +1,3 @@
+2025-06-09 02:12:12,425 [INFO] 游戏启动，日志级别: INFO
+2025-06-09 02:12:12,425 [INFO] 创建默认角色数据
+2025-06-09 02:12:18,194 [CRITICAL] 游戏发生严重错误: 'CharacterRepository' object has no attribute 'get_all'

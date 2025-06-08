@@ -1,0 +1,442 @@
+[
+  {
+    "id": "rasengan_001",
+    "name": "螺旋丸",
+    "type": "DAMAGE",
+    "description": "对单个目标造成大量伤害",
+    "chakra_cost": 30,
+    "cooldown_turns": 2,
+    "current_cooldown": 0,
+    "target_type": "SINGLE",
+    "target_count": 1,
+    "effects": [
+      {
+        "effect_type": "DAMAGE",
+        "value_formula": "base + attack * 0.5",
+        "base_value": 100
+      }
+    ],
+    "causes_chase_state": "NONE",
+    "requires_chase_state": "NONE",
+    "chase_priority": 0,
+    "is_interruptible": true,
+    "is_instant": false
+  },
+  {
+    "id": "shadow_clone_001",
+    "name": "影分身之术",
+    "type": "BUFF",
+    "description": "增加自身攻击力",
+    "chakra_cost": 20,
+    "cooldown_turns": 3,
+    "current_cooldown": 0,
+    "target_type": "SELF",
+    "target_count": 1,
+    "effects": [
+      {
+        "effect_type": "STATUS",
+        "value_formula": "30",
+        "status_id_to_apply": "attack_up_001",
+        "apply_chance": 1.0
+      }
+    ],
+    "causes_chase_state": "NONE",
+    "requires_chase_state": "NONE",
+    "chase_priority": 0,
+    "is_interruptible": true,
+    "is_instant": false
+  },
+  {
+    "id": "kyuubi_mode_001",
+    "name": "九尾模式",
+    "type": "BUFF",
+    "description": "大幅增加自身攻击力和速度",
+    "chakra_cost": 50,
+    "cooldown_turns": 4,
+    "current_cooldown": 0,
+    "target_type": "SELF",
+    "target_count": 1,
+    "effects": [
+      {
+        "effect_type": "STATUS",
+        "value_formula": "50",
+        "status_id_to_apply": "attack_up_002",
+        "apply_chance": 1.0
+      },
+      {
+        "effect_type": "STATUS",
+        "value_formula": "30",
+        "status_id_to_apply": "speed_up_001",
+        "apply_chance": 1.0
+      }
+    ],
+    "causes_chase_state": "NONE",
+    "requires_chase_state": "NONE",
+    "chase_priority": 0,
+    "is_interruptible": true,
+    "is_instant": false
+  },
+  {
+    "id": "chidori_001",
+    "name": "千鸟",
+    "type": "DAMAGE",
+    "description": "对单个目标造成大量伤害",
+    "chakra_cost": 30,
+    "cooldown_turns": 2,
+    "current_cooldown": 0,
+    "target_type": "SINGLE",
+    "target_count": 1,
+    "effects": [
+      {
+        "effect_type": "DAMAGE",
+        "value_formula": "base + attack * 0.6",
+        "base_value": 120
+      }
+    ],
+    "causes_chase_state": "NONE",
+    "requires_chase_state": "NONE",
+    "chase_priority": 0,
+    "is_interruptible": true,
+    "is_instant": false
+  },
+  {
+    "id": "amaterasu_001",
+    "name": "天照",
+    "type": "DEBUFF",
+    "description": "对敌人造成持续伤害",
+    "chakra_cost": 45,
+    "cooldown_turns": 3,
+    "current_cooldown": 0,
+    "target_type": "SINGLE",
+    "target_count": 1,
+    "effects": [
+      {
+        "effect_type": "STATUS",
+        "value_formula": "40",
+        "status_id_to_apply": "dot_001",
+        "apply_chance": 1.0
+      }
+    ],
+    "causes_chase_state": "NONE",
+    "requires_chase_state": "NONE",
+    "chase_priority": 0,
+    "is_interruptible": true,
+    "is_instant": false
+  },
+  {
+    "id": "susanoo_001",
+    "name": "须佐能乎",
+    "type": "BUFF",
+    "description": "大幅增加自身防御力",
+    "chakra_cost": 50,
+    "cooldown_turns": 4,
+    "current_cooldown": 0,
+    "target_type": "SELF",
+    "target_count": 1,
+    "effects": [
+      {
+        "effect_type": "STATUS",
+        "value_formula": "70",
+        "status_id_to_apply": "defense_up_001",
+        "apply_chance": 1.0
+      }
+    ],
+    "causes_chase_state": "NONE",
+    "requires_chase_state": "NONE",
+    "chase_priority": 0,
+    "is_interruptible": true,
+    "is_instant": false
+  },
+  {
+    "id": "chakra_enhanced_strength_001",
+    "name": "怪力",
+    "type": "DAMAGE",
+    "description": "对单个目标造成伤害",
+    "chakra_cost": 20,
+    "cooldown_turns": 1,
+    "current_cooldown": 0,
+    "target_type": "SINGLE",
+    "target_count": 1,
+    "effects": [
+      {
+        "effect_type": "DAMAGE",
+        "value_formula": "base + attack * 0.4",
+        "base_value": 90
+      }
+    ],
+    "causes_chase_state": "NONE",
+    "requires_chase_state": "NONE",
+    "chase_priority": 0,
+    "is_interruptible": true,
+    "is_instant": false
+  },
+  {
+    "id": "medical_ninjutsu_001",
+    "name": "医疗忍术",
+    "type": "HEALING",
+    "description": "治疗单个目标",
+    "chakra_cost": 30,
+    "cooldown_turns": 2,
+    "current_cooldown": 0,
+    "target_type": "ALLY",
+    "target_count": 1,
+    "effects": [
+      {
+        "effect_type": "HEALING",
+        "value_formula": "base + ninja_tech * 0.5",
+        "base_value": 100
+      }
+    ],
+    "causes_chase_state": "NONE",
+    "requires_chase_state": "NONE",
+    "chase_priority": 0,
+    "is_interruptible": true,
+    "is_instant": false
+  },
+  {
+    "id": "strength_of_a_hundred_001",
+    "name": "百豪之术",
+    "type": "HEALING",
+    "description": "治疗所有友方角色",
+    "chakra_cost": 50,
+    "cooldown_turns": 4,
+    "current_cooldown": 0,
+    "target_type": "ALL_ALLIES",
+    "target_count": 0,
+    "effects": [
+      {
+        "effect_type": "HEALING",
+        "value_formula": "base + ninja_tech * 0.4",
+        "base_value": 80
+      }
+    ],
+    "causes_chase_state": "NONE",
+    "requires_chase_state": "NONE",
+    "chase_priority": 0,
+    "is_interruptible": true,
+    "is_instant": false
+  },
+  {
+    "id": "raikiri_001",
+    "name": "雷切",
+    "type": "DAMAGE",
+    "description": "对单个目标造成大量伤害",
+    "chakra_cost": 35,
+    "cooldown_turns": 2,
+    "current_cooldown": 0,
+    "target_type": "SINGLE",
+    "target_count": 1,
+    "effects": [
+      {
+        "effect_type": "DAMAGE",
+        "value_formula": "base + attack * 0.6",
+        "base_value": 130
+      }
+    ],
+    "causes_chase_state": "NONE",
+    "requires_chase_state": "NONE",
+    "chase_priority": 0,
+    "is_interruptible": true,
+    "is_instant": false
+  },
+  {
+    "id": "water_dragon_bullet_001",
+    "name": "水龙弹之术",
+    "type": "DAMAGE",
+    "description": "对所有敌人造成伤害",
+    "chakra_cost": 40,
+    "cooldown_turns": 3,
+    "current_cooldown": 0,
+    "target_type": "ALL_ENEMIES",
+    "target_count": 0,
+    "effects": [
+      {
+        "effect_type": "DAMAGE",
+        "value_formula": "base + attack * 0.3",
+        "base_value": 70
+      }
+    ],
+    "causes_chase_state": "NONE",
+    "requires_chase_state": "NONE",
+    "chase_priority": 0,
+    "is_interruptible": true,
+    "is_instant": false
+  },
+  {
+    "id": "sharingan_insight_001",
+    "name": "写轮眼洞察",
+    "type": "DEBUFF",
+    "description": "降低敌人闪避率",
+    "chakra_cost": 25,
+    "cooldown_turns": 3,
+    "current_cooldown": 0,
+    "target_type": "SINGLE",
+    "target_count": 1,
+    "effects": [
+      {
+        "effect_type": "STATUS",
+        "value_formula": "50",
+        "status_id_to_apply": "evasion_down_001",
+        "apply_chance": 1.0
+      }
+    ],
+    "causes_chase_state": "NONE",
+    "requires_chase_state": "NONE",
+    "chase_priority": 0,
+    "is_interruptible": true,
+    "is_instant": false
+  },
+  {
+    "id": "eight_trigrams_001",
+    "name": "八卦六十四掌",
+    "type": "DAMAGE",
+    "description": "对单个目标造成多段伤害",
+    "chakra_cost": 35,
+    "cooldown_turns": 2,
+    "current_cooldown": 0,
+    "target_type": "SINGLE",
+    "target_count": 1,
+    "effects": [
+      {
+        "effect_type": "DAMAGE",
+        "value_formula": "base + attack * 0.5",
+        "base_value": 110
+      }
+    ],
+    "causes_chase_state": "NONE",
+    "requires_chase_state": "NONE",
+    "chase_priority": 0,
+    "is_interruptible": true,
+    "is_instant": false
+  },
+  {
+    "id": "rotation_001",
+    "name": "回天",
+    "type": "BUFF",
+    "description": "提高自身防御和闪避",
+    "chakra_cost": 30,
+    "cooldown_turns": 3,
+    "current_cooldown": 0,
+    "target_type": "SELF",
+    "target_count": 1,
+    "effects": [
+      {
+        "effect_type": "STATUS",
+        "value_formula": "40",
+        "status_id_to_apply": "defense_up_002",
+        "apply_chance": 1.0
+      },
+      {
+        "effect_type": "STATUS",
+        "value_formula": "30",
+        "status_id_to_apply": "evasion_up_001",
+        "apply_chance": 1.0
+      }
+    ],
+    "causes_chase_state": "NONE",
+    "requires_chase_state": "NONE",
+    "chase_priority": 0,
+    "is_interruptible": true,
+    "is_instant": false
+  },
+  {
+    "id": "byakugan_001",
+    "name": "白眼",
+    "type": "DEBUFF",
+    "description": "降低敌人防御",
+    "chakra_cost": 25,
+    "cooldown_turns": 2,
+    "current_cooldown": 0,
+    "target_type": "SINGLE",
+    "target_count": 1,
+    "effects": [
+      {
+        "effect_type": "STATUS",
+        "value_formula": "40",
+        "status_id_to_apply": "defense_down_001",
+        "apply_chance": 1.0
+      }
+    ],
+    "causes_chase_state": "NONE",
+    "requires_chase_state": "NONE",
+    "chase_priority": 0,
+    "is_interruptible": true,
+    "is_instant": false
+  },
+  {
+    "id": "sand_storm_001",
+    "name": "沙暴",
+    "type": "DAMAGE",
+    "description": "对所有敌人造成伤害",
+    "chakra_cost": 35,
+    "cooldown_turns": 3,
+    "current_cooldown": 0,
+    "target_type": "ALL_ENEMIES",
+    "target_count": 0,
+    "effects": [
+      {
+        "effect_type": "DAMAGE",
+        "value_formula": "base + attack * 0.3",
+        "base_value": 70
+      }
+    ],
+    "causes_chase_state": "NONE",
+    "requires_chase_state": "NONE",
+    "chase_priority": 0,
+    "is_interruptible": true,
+    "is_instant": false
+  },
+  {
+    "id": "sand_coffin_001",
+    "name": "砂缚柩",
+    "type": "DEBUFF",
+    "description": "束缚敌人，造成伤害并降低速度",
+    "chakra_cost": 40,
+    "cooldown_turns": 3,
+    "current_cooldown": 0,
+    "target_type": "SINGLE",
+    "target_count": 1,
+    "effects": [
+      {
+        "effect_type": "DAMAGE",
+        "value_formula": "base + attack * 0.4",
+        "base_value": 80
+      },
+      {
+        "effect_type": "STATUS",
+        "value_formula": "40",
+        "status_id_to_apply": "speed_down_001",
+        "apply_chance": 1.0
+      }
+    ],
+    "causes_chase_state": "NONE",
+    "requires_chase_state": "NONE",
+    "chase_priority": 0,
+    "is_interruptible": true,
+    "is_instant": false
+  },
+  {
+    "id": "sand_armor_001",
+    "name": "砂之铠",
+    "type": "BUFF",
+    "description": "大幅提高自身防御",
+    "chakra_cost": 30,
+    "cooldown_turns": 3,
+    "current_cooldown": 0,
+    "target_type": "SELF",
+    "target_count": 1,
+    "effects": [
+      {
+        "effect_type": "STATUS",
+        "value_formula": "80",
+        "status_id_to_apply": "defense_up_003",
+        "apply_chance": 1.0
+      }
+    ],
+    "causes_chase_state": "NONE",
+    "requires_chase_state": "NONE",
+    "chase_priority": 0,
+    "is_interruptible": true,
+    "is_instant": false
+  }
+] 

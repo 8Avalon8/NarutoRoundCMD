@@ -1,0 +1,3 @@
+2025-06-09 02:10:41,298 [INFO] 游戏启动，日志级别: INFO
+2025-06-09 02:10:41,299 [INFO] 创建默认角色数据
+2025-06-09 02:10:55,620 [CRITICAL] 游戏发生严重错误: 'Character' object has no attribute 'traits'

@@ -1,0 +1,2 @@
+2025-06-09 02:17:04,540 [INFO] 游戏启动，日志级别: INFO
+2025-06-09 02:17:11,821 [CRITICAL] 游戏发生严重错误: BattleSession.__init__() got an unexpected keyword argument 'battle_id'
