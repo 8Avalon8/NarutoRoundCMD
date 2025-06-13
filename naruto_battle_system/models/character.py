@@ -5,6 +5,7 @@
 from dataclasses import dataclass, field
 from typing import List, Dict, Optional, Set, Union
 from .enums import ChaseState
+from ..utils.logger import game_logger
 
 @dataclass
 class Character:
@@ -56,6 +57,7 @@ class Character:
     
     def __post_init__(self):
         """初始化后的处理，确保当前生命值不超过最大生命值"""
+        game_logger.debug(f"Character.__post_init__ called for {self.name} (ID: {self.id})")
         # 如果测试设置了hp，则把它作为current_hp
         if self.hp > 0:
             self.current_hp = self.hp
@@ -66,6 +68,7 @@ class Character:
         if self.current_hp > self.max_hp:
             self.current_hp = self.max_hp
             self.hp = self.max_hp
+        game_logger.debug(f"Character {self.name} (ID: {self.id}) initialized. HP: {self.hp}, Max HP: {self.max_hp}, Alive: {self.is_alive}")
             
     def is_affected_by_chase_state(self, state: ChaseState) -> bool:
         """
@@ -124,6 +127,7 @@ class Character:
             self.is_alive = False
             self.current_hp = 0
             self.hp = 0
+            game_logger.debug(f"Character {self.name} (ID: {self.id}) is_alive changed to False in take_damage.")
             
         return actual_damage
         
@@ -176,7 +180,8 @@ class Character:
         """
         克隆角色
         """
-        return Character(
+        game_logger.debug(f"Cloning character: ID={self.id}, Name={self.name}, HP={self.hp}, MaxHP={self.max_hp}, Alive={self.is_alive}")
+        cloned_char = Character(
             name=self.name,
             hp=self.hp,
             max_hp=self.max_hp,
@@ -208,3 +213,5 @@ class Character:
             is_player_controlled=self.is_player_controlled,
             current_hp=self.current_hp
         )
+        game_logger.debug(f"Cloned character created: ID={cloned_char.id}, Name={cloned_char.name}, HP={cloned_char.hp}, MaxHP={cloned_char.max_hp}, Alive={cloned_char.is_alive}")
+        return cloned_char

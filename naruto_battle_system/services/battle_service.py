@@ -11,6 +11,7 @@ from ..controllers.input_controller import InputController
 from ..views.battle_view import BattleView
 from ..data.repositories import CharacterRepository
 from ..models.common_types import CharacterProtocol
+from ..utils.logger import game_logger
 
 
 class BattleService:
@@ -94,10 +95,14 @@ class BattleService:
         Args:
             session: 战斗会话
         """
+        game_logger.debug(f"_battle_loop: Initial check of is_battle_over() for session {session.battle_id}. Result: {session.battle_controller.is_battle_over()}")
         while not session.battle_controller.is_battle_over():
+            current_round = session.battle_state.current_round
+            game_logger.debug(f"_battle_loop: Round {current_round} - About to call process_turn for session {session.battle_id}.")
             # 处理当前角色的回合
-            is_battle_over = session.battle_controller.process_turn()
-            if is_battle_over:
+            is_battle_over_flag = session.battle_controller.process_turn()
+            game_logger.debug(f"_battle_loop: Round {current_round} - process_turn returned: {is_battle_over_flag}. Current is_battle_over(): {session.battle_controller.is_battle_over()}")
+            if is_battle_over_flag:
                 break
                 
             # 获取当前角色
