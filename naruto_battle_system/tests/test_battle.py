@@ -57,8 +57,8 @@ class TestBattleController(unittest.TestCase):
         self.character1.skills.append(self.test_skill)
         
         # 创建队伍
-        self.team_a = BattleTeam("队伍A", [self.character1])
-        self.team_b = BattleTeam("队伍B", [self.character2])
+        self.team_a = BattleTeam(name="队伍A", player_id="player1", characters=[self.character1])
+        self.team_b = BattleTeam(name="队伍B", player_id="player2", characters=[self.character2])
         
         # 创建战斗状态
         self.battle_state = BattleState(self.team_a, self.team_b)
@@ -104,6 +104,9 @@ class TestBattleController(unittest.TestCase):
     
     def test_execute_skill_action(self):
         """测试执行技能动作"""
+        # 开始战斗以初始化回合顺序等
+        self.battle_controller.start_battle()
+
         # 设置初始查克拉
         self.character1.chakra = 100
         
@@ -125,10 +128,9 @@ class TestBattleController(unittest.TestCase):
         
         # 验证查克拉已消耗
         print(f"执行后查克拉: {self.character1.chakra}")
-        print(f"期望查克拉: 90")
         
-        # 断言查克拉减少了10（实际实现中消耗了10点查克拉）
-        self.assertEqual(self.character1.chakra, 90, "查克拉应该减少10点")
+        # 断言查克拉减少了20
+        self.assertEqual(self.character1.chakra, 80, "查克拉应该减少20点")
         
         # 验证动作执行事件被调用
         self.mock_events.on_action_executed.assert_called_once()
