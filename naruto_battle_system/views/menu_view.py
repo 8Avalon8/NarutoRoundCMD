@@ -11,7 +11,7 @@ class MenuView:
     
     def clear_screen(self) -> None:
         """清空控制台屏幕"""
-        #os.system('cls' if os.name == 'nt' else 'clear')
+        os.system('cls' if os.name == 'nt' else 'clear')
         pass
     
     def show_title(self) -> None:
