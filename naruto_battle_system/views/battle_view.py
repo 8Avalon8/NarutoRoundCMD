@@ -6,6 +6,7 @@ from ..models.battle_state import BattleState
 from ..models.action import ActionResult
 from ..models.enums import ActionType, StatusEffectType
 from ..interfaces.battle_interfaces import IBattleEvents
+from ..utils.logger import game_logger
 
 
 class ConsoleColors:
@@ -188,6 +189,7 @@ class BattleView(IBattleEvents):
         Args:
             character: 行动的角色
         """
+        game_logger.debug(f"BattleView.on_turn_start called for character: {character.name} (ID: {character.id})")
         self.show_battle_field()
         print(f"\n{ConsoleColors.CYAN}{character.name} 的回合{ConsoleColors.RESET}")
         self._wait(0.3)

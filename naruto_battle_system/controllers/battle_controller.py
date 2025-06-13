@@ -8,6 +8,7 @@ from ..models.action import Action, ActionResult
 from ..models.enums import ActionType, TargetType, StatusEffectType
 from ..models.status_effect import StatusEffect
 from ..models.skill import Skill
+from ..utils.logger import game_logger
 
 
 class BattleController(IBattleController):
@@ -76,6 +77,7 @@ class BattleController(IBattleController):
         for team in [self.battle_state.team_a, self.battle_state.team_b]:
             for character in team.characters:
                 if character.is_alive:
+                    game_logger.debug(f"_calculate_turn_order: Adding character to all_characters: ID={character.id}, Name={character.name}, Speed={character.speed}, Alive={character.is_alive}")
                     all_characters.append(character)
         
         # 根据速度和随机因素排序
@@ -85,6 +87,9 @@ class BattleController(IBattleController):
         self.battle_state.turn_order = all_characters
         self.battle_state.current_character_index = 0
         
+        turn_order_log = [(char.id, char.name) for char in self.battle_state.turn_order]
+        game_logger.debug(f"_calculate_turn_order: Sorted turn_order: {turn_order_log}")
+
         if all_characters:
             self.events.on_turn_start(all_characters[0])
     
@@ -123,12 +128,15 @@ class BattleController(IBattleController):
     
     def process_turn(self) -> bool:
         """处理当前角色的回合，返回战斗是否结束"""
+        game_logger.debug(f"process_turn: Entry. Round: {self.battle_state.current_round}, Char Index: {self.battle_state.current_character_index}, Turn Order: {[(c.id, c.name) for c in self.battle_state.turn_order]}")
         if self.is_battle_over():
             self.events.on_battle_end(self.battle_state)
             return True
             
+        game_logger.debug("process_turn: About to get current character.")
         current_character = self.get_current_character()
         if not current_character:
+            game_logger.debug("process_turn: current_character is None. Preparing new round.")
             self._prepare_new_round()
             return self.process_turn()
         
@@ -139,7 +147,9 @@ class BattleController(IBattleController):
             
         # 如果是AI控制的角色，生成AI动作
         if not current_character.is_player_controlled:
+            game_logger.debug(f"process_turn: Current character {current_character.name} (ID: {current_character.id}) is AI controlled. Generating AI action.")
             action = self._generate_ai_action(current_character)
+            game_logger.debug(f"process_turn: AI action generated: {action.action_type} by {action.character.name} on {action.target.name if action.target else 'None'} with skill {action.skill.name if action.skill else 'None'}")
             return self.execute_action(action)
             
         # 等待玩家输入，此时不推进回合
@@ -196,6 +206,7 @@ class BattleController(IBattleController):
         Returns:
             战斗是否结束
         """
+        game_logger.debug(f"execute_action: Called with action: {action.action_type} by {action.character.name} (ID: {action.character.id}) on {action.target.name if action.target else 'None'} (ID: {action.target.id if action.target else 'None'}) with skill {action.skill.name if action.skill else 'None'}")
         result = ActionResult(action)
         
         if action.action_type == ActionType.ATTACK:
@@ -420,9 +431,18 @@ class BattleController(IBattleController):
     
     def is_battle_over(self) -> bool:
         """判断战斗是否结束"""
+        game_logger.debug("is_battle_over: Checking Team A characters:")
+        for char_a in self.battle_state.team_a.characters:
+            game_logger.debug(f"is_battle_over: Team A Char: ID={char_a.id}, Name={char_a.name}, HP={char_a.hp}, Alive={char_a.is_alive}")
+
+        game_logger.debug("is_battle_over: Checking Team B characters:")
+        for char_b in self.battle_state.team_b.characters:
+            game_logger.debug(f"is_battle_over: Team B Char: ID={char_b.id}, Name={char_b.name}, HP={char_b.hp}, Alive={char_b.is_alive}")
+
         team_a_alive = any(c.is_alive for c in self.battle_state.team_a.characters)
         team_b_alive = any(c.is_alive for c in self.battle_state.team_b.characters)
         
+        game_logger.debug(f"is_battle_over: Team A Alive: {team_a_alive}, Team B Alive: {team_b_alive}, Battle Over: {not (team_a_alive and team_b_alive)}")
         return not (team_a_alive and team_b_alive)
     
     def get_winning_team(self) -> Optional[BattleTeam]:
